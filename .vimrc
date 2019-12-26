@@ -1,6 +1,6 @@
 " References:
-"	Introduction to Vim Customization - Linode
-"	[https://www.linode.com/docs/tools-reference/tools/introduction-to-vim-customization/]
+"     Introduction to Vim Customization - Linode
+"     [https://www.linode.com/docs/tools-reference/tools/introduction-to-vim-customization/]
 
 " Set compatibility to Vim only.
 " 'compatible': make Vim either more Vi-compatible, or make Vim behave in a more useful way.
@@ -37,39 +37,55 @@ imap <F2> <C-O>:set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 
-" List mode: Display different types of white spaces. Useful to see differences b/w tab and spaces and for trailing blanks.
-set nolist
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-
 " Uncomment below to set the max textwidth. Use a value corresponding to the width of your screen.
 " set textwidth=79
+
+" format options:
+"   t   Auto-wrap text using textwidth,
+"   c   Auto-wrap comments using textwidth, inserting current comment leader automatically
+"   q   Allow formatting of comments with "gq"
+"   r   Automatically insert the current comment leader after hitting <Enter> in Insert mode
+"   n   When formatting text, recognize numbered lists. The indent of the text after the number is used for the next line
+"   1   Don't break a line after a one-letter word. It's broken before it instead (if possible).
 set formatoptions=tcqrn1
 
-" tabstop: Number of spaces that a <Tab> in the file counts for.
+" tabstop: Number of spaces with which a <Tab> 'character' in the file is displayed as.
 set tabstop=4
 " Number of spaces to use for each step of (auto)indent.
 set shiftwidth=4
+" Number of spaces that a <Tab> counts for while performing editing ops - inserting <Tab> or using <BS>.
+" It feels like <Tab>s are used, while actually a mix of <Tab>s (of size 'tabstop' spaces) and spaces are being used.
 set softtabstop=4
+" Always use appropriate number of <space> 'characters' space to insert <Tab>.
 set expandtab
+" shiftround => round indent to a multiple of 'shiftwidth' for < and > indent commands.
+" noshiftround => insert 'shiftround' **more** spaces/Tabs for < and > indent commands instead although that might not make total number of indentation spaces a multiple of 'shiftwidth'
 set noshiftround
+
 
 " Display 5 lines above/below the cursor when scrolling with a mouse.
 set scrolloff=5
-" Fixes common backspace problems
+" Fixes common backspace problems - indent: allow backspacing over indentation from autoindent, eol: allow backspacing over line breaks (join lines), start: allow backspacing past the position where you started insert mode
 set backspace=indent,eol,start
 
-" Speed up scrolling in Vim
+" Speed up scrolling in Vim / Send more characters to screen for redrawing
 set ttyfast
 
 " Status bar
 set laststatus=2
 
 " Display options
+" showmode: If in Insert, Replace or Visual mode put a message of current mode on last line
 set showmode
+" showcmd: Show (partial) command in last line of screen.
 set showcmd
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
+
+" List mode: Display different types of white spaces. Useful to see differences b/w tab and spaces and for trailing blanks.
+set nolist
+set listchars=tab:›-,trail:•,extends:#,nbsp:.
 
 " Show line numbers
 set number
